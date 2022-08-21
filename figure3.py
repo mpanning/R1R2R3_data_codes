@@ -7,21 +7,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-csvfile = 'SW_picks_v2.csv'
+csvfile = './data/SW_picks_v4.csv'
 
 df = pd.read_csv(csvfile).set_index('Dataset', drop=False)
 
-U_datasets = df.loc["JPL":"DK", "U"].to_numpy()
+U_datasets = df.loc["JPL":"BKE", "U"].to_numpy()
 U_sum = df.loc["Summary", "U"]
-U_std_datasets = df.loc["JPL":"DK", "U_std"].to_numpy()
+U_std_datasets = df.loc["JPL":"BKE", "U_std"].to_numpy()
 U_std_sum = df.loc["Summary", "U_std"]
-labels_datasets = df.loc["JPL":"DK", "Dataset"].to_numpy()
+labels_datasets = df.loc["JPL":"BKE", "Dataset"].to_numpy()
 
 Uarray = np.append(U_datasets, U_sum)
 Ustd = np.append(U_std_datasets, U_std_sum)
 # labels = np.append(labels_datasets, ['Summary'])
-labels = ["Method 1", "Method 2", "Method 3", "Method 4", "Method 5",
-          "Summary"]
+labels = ["Method 1", "Method 2", "Method 3", "Method 4", "Summary"]
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
 fig, axs = plt.subplots(3, 1, sharex=True, figsize=(6,9))
@@ -40,9 +39,9 @@ axs[0].set_ylabel("Group velocity (km/s)")
 axs[0].text(labelxoff, labelyoff, 'A', transform=axs[0].transAxes, fontsize=16)
 # plt.legend()
 
-Delta_datasets = df.loc["JPL":"DK", "Delta"].to_numpy()
+Delta_datasets = df.loc["JPL":"BKE", "Delta"].to_numpy()
 Delta_sum = df.loc["Summary", "Delta"]
-Delta_std_datasets = df.loc["JPL":"DK", "Delta_std"].to_numpy()
+Delta_std_datasets = df.loc["JPL":"BKE", "Delta_std"].to_numpy()
 Delta_std_sum = df.loc["Summary", "Delta_std"]
 # labels_datasets = df.loc["JPL":"BKE", "Dataset"].to_numpy()
 
@@ -72,9 +71,9 @@ axs[1].add_patch(Rectangle((xmin, MQS_Delta - 2.*MQS_Delta_std), xmax-xmin,
 axs[1].set_xlim((xmin, xmax))
 axs[1].text(labelxoff, labelyoff, 'B', transform=axs[1].transAxes, fontsize=16)
 
-t0_datasets = df.loc["JPL":"DK", "t0"].to_numpy()
+t0_datasets = df.loc["JPL":"BKE", "t0"].to_numpy()
 t0_sum = df.loc["Summary", "t0"]
-t0_std_datasets = df.loc["JPL":"DK", "t0_std"].to_numpy()
+t0_std_datasets = df.loc["JPL":"BKE", "t0_std"].to_numpy()
 t0_std_sum = df.loc["Summary", "t0_std"]
 # labels_datasets = df.loc["JPL":"BKE", "Dataset"].to_numpy()
 

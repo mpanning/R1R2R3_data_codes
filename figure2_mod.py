@@ -10,7 +10,7 @@ import numpy as np
 from scipy.signal import hilbert
 from matplotlib.patches import Rectangle
 
-datafile = 'S1222a.BH.vbbrotate.deglitched.mseed'
+datafile = './data/S1222a.BH.vbbrotate.deglitched.mseed'
 origin = UTCDateTime(2022,5,4,23,23,6,570000)
 reftime = UTCDateTime(2022,5,4,23,27,45,690000)
 
@@ -271,5 +271,5 @@ ax.text(labelxoff, labelyoff, "D", transform=ax.transAxes, fontsize=16)
 ax.set_title("Alternate R2")
 ax.set_xlabel("Backazimuth")
 
-plt.show()
-# plt.savefig("Figure2_v2.png")
+# plt.show()
+plt.savefig("Figure2_v2.png")
