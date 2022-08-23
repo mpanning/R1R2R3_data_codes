@@ -22,10 +22,10 @@ hwidth = 0.3
 
 # Set up plot grid
 fig = plt.figure(figsize=(8, 9))
-grid = plt.GridSpec(9, 2, hspace=0, wspace=0.2)
+grid = plt.GridSpec(9, 3, hspace=0, wspace=0.2)
 axs = [plt.subplot(grid[:3, 0]), plt.subplot(grid[:3, 1]),
        plt.subplot(grid[4:7, 0]), plt.subplot(grid[4:7, 1]),
-       plt.subplot(grid[8,:])]
+       plt.subplot(grid[8, :2]), plt.subplot(grid[:7,2])]
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 labelxoff = 0.03
 labelyoff = 0.9
@@ -97,7 +97,7 @@ ax.text(labelxoff, labelyoff, "A", transform=ax.transAxes, fontsize=16)
 
 # Plot legend
 h, l = ax.get_legend_handles_labels()
-axs[4].legend(h,l, borderaxespad=0, loc=10, ncol=4)
+axs[4].legend(h,l, borderaxespad=0, loc=10, ncol=3)
 axs[4].axis("off")
 
 # R2 window
@@ -155,6 +155,7 @@ plt.ylim(-1,1)
 plt.xlim(0,360)
 ax.text(labelxoff, labelyoff, "B", transform=ax.transAxes, fontsize=16)
 ax.set_title("R2 window")
+ax.yaxis.set_ticklabels([])
 
 # R3 window
 ax = axs[2]
@@ -270,6 +271,102 @@ plt.xlim(0,360)
 ax.text(labelxoff, labelyoff, "D", transform=ax.transAxes, fontsize=16)
 ax.set_title("Alternate R2")
 ax.set_xlabel("Backazimuth")
+ax.yaxis.set_ticklabels([])
+
+# Plot up different baz estimates from different methods and different phases
+ax = axs[5]
+plt.sca(ax)
+
+# R1 picks
+# 3 JPL picks
+plt.plot([108], [-0], label='R1 Ia', color=colors[0], marker="o",
+         markersize=5)
+plt.plot([68, 176], [-0, -0], color=colors[0])
+plt.plot([146], [-0.1], label='R1 Ib', color=colors[0], marker="o",
+         markersize=5)
+plt.plot([94, 200], [-0.1, -0.1], color=colors[0], linestyle="dashed")
+plt.plot([140], [-0.2], label='R1 Ic', color=colors[0], marker="o",
+         markersize=5)
+plt.plot([72, 202], [-0.2, -0.2], color=colors[0], linestyle="dotted")
+# Carrasco
+plt.plot([130], [-0.3], label='R1 II', color=colors[1], marker="o",
+         markersize=5)
+plt.plot([114, 137], [-0.3, -0.3], color=colors[1])
+# DK
+plt.plot([124.5], [-0.4], label='R1 III', color=colors[2], marker='o',
+         markersize=5)
+plt.plot([114.5, 139.7], [-0.4, -0.4], color=colors[2])
+ax.text(270, -0.2, "R1", fontsize=12)
+#Add in MQS baz pick
+plt.plot([MQSbaz, MQSbaz], [0.1, -0.5], 'k-.')
+ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -0.5), 4.*MQSbaz_sigma,
+                       0.6, color='grey', alpha=0.5))
+
+# R2 picks
+plt.plot([0, 360], [-0.5, -0.5], color='k')
+# 3 JPL picks
+plt.plot([348], [-0.6], label='R2 Ia', color=colors[0], marker="s",
+         markersize=5)
+plt.plot([318, 360], [-0.6, -0.6], color=colors[0])
+plt.plot([0, 18], [-0.6, -0.6], color=colors[0])
+plt.plot([340], [-0.7], label='R2 Ib', color=colors[0], marker="s",
+         markersize=5)
+plt.plot([318, 360], [-0.7, -0.7], color=colors[0], linestyle="dashed")
+plt.plot([0, 12], [-0.7, -0.7], color=colors[0], linestyle="dashed")
+plt.plot([340], [-0.8], label='R2 Ic', color=colors[0], marker="s",
+         markersize=5)
+plt.plot([308, 360], [-0.8, -0.8], color=colors[0], linestyle="dotted")
+plt.plot([0, 12], [-0.8, -0.8], color=colors[0], linestyle="dotted")
+# Carrasco
+plt.plot([293], [-0.9], label='R2 II', color=colors[1], marker="s",
+         markersize=5)
+plt.plot([266, 301], [-0.9, -0.9], color=colors[1])
+# DK
+plt.plot([197.1], [-1.0], label='R2 III', color=colors[2], marker='o',
+         markersize=5)
+plt.plot([188, 224], [-1.0, -1.0], color=colors[2])
+ax.text(90, -0.8, "R2", fontsize=12)
+#Add in MQS baz pick
+plt.plot([MQSbaz+180, MQSbaz+180], [-0.5, -1.1], 'k-.')
+ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1.1), 4.*MQSbaz_sigma,
+                       0.6, color='grey', alpha=0.5))
+
+# R3 picks
+plt.plot([0, 360], [-1.1, -1.1], color='k')
+# 3 JPL picks
+plt.plot([176], [-1.2], label='R3 Ia', color=colors[0], marker="D",
+         markersize=5)
+plt.plot([130, 218], [-1.2, -1.2], color=colors[0])
+plt.plot([162], [-1.3], label='R3 Ib', color=colors[0], marker="D",
+         markersize=5)
+plt.plot([122, 214], [-1.3, -1.3], color=colors[0], linestyle="dashed")
+plt.plot([166], [-1.4], label='R3 Ic', color=colors[0], marker="D",
+         markersize=5)
+plt.plot([120, 220], [-1.4, -1.4], color=colors[0], linestyle="dotted")
+# Carrasco
+#plt.plot([293], [0.9], label='R3 II', color=colors[1], marker="s",
+#         markersize=5)
+#plt.plot([266, 301], [0.9, 0.9], color=colors[1])
+# DK
+plt.plot([136], [-1.5], label='R3 III', color=colors[2], marker='D',
+         markersize=5)
+plt.plot([7.5, 148.5], [-1.5, -1.5], color=colors[2])
+ax.text(270, -1.35, "R3", fontsize=12)
+#Add in MQS baz pick
+plt.plot([MQSbaz, MQSbaz], [-1.1, -1.6], 'k-.')
+ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1.6), 4.*MQSbaz_sigma,
+                       0.5, color='grey', alpha=0.5))
+
+
+
+
+ax.yaxis.set_ticklabels([])
+ax.yaxis.set_ticks([])
+ax.xaxis.set_ticks([0, 90, 180, 270, 360])
+ax.set_xlim([0, 360])
+ax.set_ylim([-1.6, 0.1])
+ax.text(labelxoff, 0.96, "E", transform=ax.transAxes, fontsize=16)
+
 
 # plt.show()
-plt.savefig("Figure2_v2.png")
+plt.savefig("Figure2_v3.png")
