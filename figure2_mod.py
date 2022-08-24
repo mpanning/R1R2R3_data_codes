@@ -25,7 +25,8 @@ fig = plt.figure(figsize=(8, 9))
 grid = plt.GridSpec(9, 3, hspace=0, wspace=0.2)
 axs = [plt.subplot(grid[:3, 0]), plt.subplot(grid[:3, 1]),
        plt.subplot(grid[4:7, 0]), plt.subplot(grid[4:7, 1]),
-       plt.subplot(grid[8, :2]), plt.subplot(grid[:7,2])]
+       plt.subplot(grid[8, :2]), plt.subplot(grid[:7,2]),
+       plt.subplot(grid[8, 2])]
 colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 labelxoff = 0.03
 labelyoff = 0.9
@@ -279,28 +280,33 @@ plt.sca(ax)
 
 # R1 picks
 # 3 JPL picks
-plt.plot([108], [-0], label='R1 Ia', color=colors[0], marker="o",
-         markersize=5)
+plt.plot([108], [-0], label='Method Ia', color=colors[0], marker="o",
+         markersize=5, linestyle='solid')
 plt.plot([68, 176], [-0, -0], color=colors[0])
-plt.plot([146], [-0.1], label='R1 Ib', color=colors[0], marker="o",
-         markersize=5)
+plt.plot([146], [-0.1], label='Method Ib', color=colors[0], marker="o",
+         markersize=5, linestyle='dashed')
 plt.plot([94, 200], [-0.1, -0.1], color=colors[0], linestyle="dashed")
-plt.plot([140], [-0.2], label='R1 Ic', color=colors[0], marker="o",
-         markersize=5)
+plt.plot([140], [-0.2], label='Method Ic', color=colors[0], marker="o",
+         markersize=5, linestyle='dotted')
 plt.plot([72, 202], [-0.2, -0.2], color=colors[0], linestyle="dotted")
 # Carrasco
-plt.plot([130], [-0.3], label='R1 II', color=colors[1], marker="o",
-         markersize=5)
+plt.plot([130], [-0.3], label='Method II', color=colors[1], marker="o",
+         markersize=5, linestyle='solid')
 plt.plot([114, 137], [-0.3, -0.3], color=colors[1])
 # DK
-plt.plot([124.5], [-0.4], label='R1 III', color=colors[2], marker='o',
-         markersize=5)
+plt.plot([124.5], [-0.4], label='Method III', color=colors[2], marker='o',
+         markersize=5, linestyle='solid')
 plt.plot([114.5, 139.7], [-0.4, -0.4], color=colors[2])
 ax.text(270, -0.2, "R1", fontsize=12)
 #Add in MQS baz pick
 plt.plot([MQSbaz, MQSbaz], [0.1, -0.5], 'k-.')
 ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -0.5), 4.*MQSbaz_sigma,
                        0.6, color='grey', alpha=0.5))
+# Add in legend
+h, l = ax.get_legend_handles_labels()
+axs[6].legend(h,l, borderaxespad=0, loc=10)
+axs[6].axis("off")
+
 
 # R2 picks
 plt.plot([0, 360], [-0.5, -0.5], color='k')
@@ -322,7 +328,7 @@ plt.plot([293], [-0.9], label='R2 II', color=colors[1], marker="s",
          markersize=5)
 plt.plot([266, 301], [-0.9, -0.9], color=colors[1])
 # DK
-plt.plot([197.1], [-1.0], label='R2 III', color=colors[2], marker='o',
+plt.plot([197.1], [-1.0], label='R2 III', color=colors[2], marker='s',
          markersize=5)
 plt.plot([188, 224], [-1.0, -1.0], color=colors[2])
 ax.text(90, -0.8, "R2", fontsize=12)
@@ -344,18 +350,18 @@ plt.plot([166], [-1.4], label='R3 Ic', color=colors[0], marker="D",
          markersize=5)
 plt.plot([120, 220], [-1.4, -1.4], color=colors[0], linestyle="dotted")
 # Carrasco
-#plt.plot([293], [0.9], label='R3 II', color=colors[1], marker="s",
-#         markersize=5)
-#plt.plot([266, 301], [0.9, 0.9], color=colors[1])
-# DK
-plt.plot([136], [-1.5], label='R3 III', color=colors[2], marker='D',
+plt.plot([172], [-1.5], label='R3 II', color=colors[1], marker="D",
          markersize=5)
-plt.plot([7.5, 148.5], [-1.5, -1.5], color=colors[2])
-ax.text(270, -1.35, "R3", fontsize=12)
+plt.plot([157, 180], [-1.5, -1.5], color=colors[1])
+# DK
+plt.plot([136], [-1.6], label='R3 III', color=colors[2], marker='D',
+         markersize=5)
+plt.plot([7.5, 148.5], [-1.6, -1.6], color=colors[2])
+ax.text(270, -1.4, "R3", fontsize=12)
 #Add in MQS baz pick
-plt.plot([MQSbaz, MQSbaz], [-1.1, -1.6], 'k-.')
-ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1.6), 4.*MQSbaz_sigma,
-                       0.5, color='grey', alpha=0.5))
+plt.plot([MQSbaz, MQSbaz], [-1.1, -1.7], 'k-.')
+ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1.7), 4.*MQSbaz_sigma,
+                       0.6, color='grey', alpha=0.5))
 
 
 
@@ -364,7 +370,7 @@ ax.yaxis.set_ticklabels([])
 ax.yaxis.set_ticks([])
 ax.xaxis.set_ticks([0, 90, 180, 270, 360])
 ax.set_xlim([0, 360])
-ax.set_ylim([-1.6, 0.1])
+ax.set_ylim([-1.7, 0.1])
 ax.text(labelxoff, 0.96, "E", transform=ax.transAxes, fontsize=16)
 
 
