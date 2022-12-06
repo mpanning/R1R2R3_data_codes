@@ -12,7 +12,7 @@ from obspy.core import UTCDateTime
 import xml.etree.ElementTree as ET
 import re
 
-quakemlfile = './data/S1222a_0901.xml'
+quakemlfile = './data/S1222a_1205.xml'
 
 # Open QuakeML file and read the relevant pdfs
 tree = ET.parse(quakemlfile)
@@ -37,7 +37,7 @@ bazpdf = np.array(probability[indx], dtype=np.dtype('float_'))
 def gauss(x, a, x0, sigma):
     return a*np.exp(-(x-x0)**2/(2*sigma**2))
 
-popt, pcov = curve_fit(gauss, baz, bazpdf, p0=[0.0001, 109, 10])
+popt, pcov = curve_fit(gauss, baz, bazpdf, p0=[0.0001, 102, 10])
 
 plt.plot(baz, bazpdf)
 plt.plot(baz, gauss(baz, *popt))

@@ -84,8 +84,8 @@ plt.plot(baz_angles, corr_bb, 'b-', label='Broadband')
 # plt.legend()
 
 #Add in MQS baz pick
-MQSbaz = 109
-MQSbaz_sigma = 7.44
+MQSbaz = 101
+MQSbaz_sigma = 6.55
 plt.plot([MQSbaz, MQSbaz], [-1, 1], 'k-.', label="MQS baz")
 ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
                        color='grey', alpha=0.5))
