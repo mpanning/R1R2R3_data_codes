@@ -51,7 +51,7 @@ Deltastd = np.append(Delta_std_datasets, Delta_std_sum)
 # colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
 MQS_Delta = 37.01
-MQS_Delta_std = 0.94
+MQS_Delta_std = 1.6
 
 # fig, axs = plt.subplots(1, 3, sharey=True)
 plt.sca(axs[1])
@@ -66,8 +66,8 @@ axs[1].set_ylabel("Distance (degrees)")
 xmin, xmax = axs[1].get_xlim()
 plt.plot([xmin, xmax], [MQS_Delta, MQS_Delta], 'k--')
 
-axs[1].add_patch(Rectangle((xmin, MQS_Delta - 2.*MQS_Delta_std), xmax-xmin,
-                           4.*MQS_Delta_std, color='grey', alpha=0.5))
+axs[1].add_patch(Rectangle((xmin, MQS_Delta - MQS_Delta_std), xmax-xmin,
+                           2.*MQS_Delta_std, color='grey', alpha=0.5))
 axs[1].set_xlim((xmin, xmax))
 axs[1].text(labelxoff, labelyoff, 'B', transform=axs[1].transAxes, fontsize=16)
 
@@ -83,7 +83,7 @@ t0std = np.append(t0_std_datasets, t0_std_sum)
 # colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
 MQS_t0 = -279.1
-MQS_t0_std = 4.6
+MQS_t0_std = 4.8
 
 # fig, axs = plt.subplots(1, 3, sharey=True)
 plt.sca(axs[2])
@@ -97,8 +97,8 @@ for i in np.arange(len(t0array)):
 axs[2].set_ylabel("t$_0$ (seconds relative to P)")
 xmin, xmax = axs[2].get_xlim()
 plt.plot([xmin, xmax], [MQS_t0, MQS_t0], 'k--')
-axs[2].add_patch(Rectangle((xmin, MQS_t0 - 2.*MQS_t0_std), xmax-xmin,
-                           4.*MQS_t0_std, color='grey', alpha=0.5))
+axs[2].add_patch(Rectangle((xmin, MQS_t0 - MQS_t0_std), xmax-xmin,
+                           2.*MQS_t0_std, color='grey', alpha=0.5))
 axs[2].set_xlim((xmin, xmax))
 axs[2].text(labelxoff, labelyoff, 'C', transform=axs[2].transAxes, fontsize=16)
 

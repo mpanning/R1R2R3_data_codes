@@ -85,9 +85,13 @@ plt.plot(baz_angles, corr_bb, 'b-', label='Broadband')
 
 #Add in MQS baz pick
 MQSbaz = 101
-MQSbaz_sigma = 6.55
+# MQSbaz_sigma = 6.55
+MQSbaz_min = 96
+MQSbaz_max = 112
 plt.plot([MQSbaz, MQSbaz], [-1, 1], 'k-.', label="MQS baz")
-ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+# ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+#                        color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min, -1), MQSbaz_max-MQSbaz_min, 2,
                        color='grey', alpha=0.5))
 
 plt.ylim(-1,1)
@@ -150,7 +154,9 @@ plt.plot(baz_angles, corr_ave_high, 'r-', label='High Qual')
 plt.plot(baz_angles, corr_bb, 'b-', label='Broadband')
 #Add in MQS baz pick
 plt.plot([MQSbaz+180, MQSbaz+180], [-1, 1], 'k-.')
-ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+# ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+#                        color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min+180, -1), MQSbaz_max-MQSbaz_min, 2,
                        color='grey', alpha=0.5))
 plt.ylim(-1,1)
 plt.xlim(0,360)
@@ -207,7 +213,9 @@ plt.plot(baz_angles, corr_ave_high, 'r-', label='High Qual')
 plt.plot(baz_angles, corr_bb, 'b-', label='Broadband')
 #Add in MQS baz pick
 plt.plot([MQSbaz, MQSbaz], [-1, 1], 'k-.')
-ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+# ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+#                        color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min, -1), MQSbaz_max-MQSbaz_min, 2,
                        color='grey', alpha=0.5))
 plt.ylim(-1,1)
 plt.xlim(0,360)
@@ -265,7 +273,9 @@ plt.plot(baz_angles, corr_ave_high, 'r-', label='High Qual')
 plt.plot(baz_angles, corr_bb, 'b-', label='Broadband')
 #Add in MQS baz pick
 plt.plot([MQSbaz+180, MQSbaz+180], [-1, 1], 'k-.')
-ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+# ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1), 4.*MQSbaz_sigma, 2,
+#                        color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min+180, -1), MQSbaz_max-MQSbaz_min, 2,
                        color='grey', alpha=0.5))
 plt.ylim(-1,1)
 plt.xlim(0,360)
@@ -300,8 +310,10 @@ plt.plot([114.5, 139.7], [-0.4, -0.4], color=colors[2])
 ax.text(270, -0.2, "R1", fontsize=12)
 #Add in MQS baz pick
 plt.plot([MQSbaz, MQSbaz], [0.1, -0.5], 'k-.')
-ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -0.5), 4.*MQSbaz_sigma,
-                       0.6, color='grey', alpha=0.5))
+# ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -0.5), 4.*MQSbaz_sigma,
+#                        0.6, color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min, -0.5), MQSbaz_max-MQSbaz_min, 0.6,
+                       color='grey', alpha=0.5))
 # Add in legend
 h, l = ax.get_legend_handles_labels()
 axs[6].legend(h,l, borderaxespad=0, loc=10)
@@ -334,8 +346,10 @@ plt.plot([188, 224], [-1.0, -1.0], color=colors[2])
 ax.text(90, -0.8, "R2", fontsize=12)
 #Add in MQS baz pick
 plt.plot([MQSbaz+180, MQSbaz+180], [-0.5, -1.1], 'k-.')
-ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1.1), 4.*MQSbaz_sigma,
-                       0.6, color='grey', alpha=0.5))
+# ax.add_patch(Rectangle((MQSbaz+180 - 2.*MQSbaz_sigma, -1.1), 4.*MQSbaz_sigma,
+#                        0.6, color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min+180, -1.1), MQSbaz_max-MQSbaz_min, 0.6,
+                       color='grey', alpha=0.5))
 
 # R3 picks
 plt.plot([0, 360], [-1.1, -1.1], color='k')
@@ -360,8 +374,10 @@ plt.plot([7.5, 148.5], [-1.6, -1.6], color=colors[2])
 ax.text(270, -1.4, "R3", fontsize=12)
 #Add in MQS baz pick
 plt.plot([MQSbaz, MQSbaz], [-1.1, -1.7], 'k-.')
-ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1.7), 4.*MQSbaz_sigma,
-                       0.6, color='grey', alpha=0.5))
+# ax.add_patch(Rectangle((MQSbaz - 2.*MQSbaz_sigma, -1.7), 4.*MQSbaz_sigma,
+#                        0.6, color='grey', alpha=0.5))
+ax.add_patch(Rectangle((MQSbaz_min, -1.7), MQSbaz_max-MQSbaz_min, 0.6,
+                       color='grey', alpha=0.5))
 
 
 
